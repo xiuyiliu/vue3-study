@@ -1,10 +1,33 @@
 <!-- 登录页面 -->
 <template>
-  <div>登录页面 <el-button>登录</el-button></div>
+  <div>
+    <el-form ref="formRef" :model="form" label-width="120px">
+      <el-form-item label="phone" prop="phone">
+        <el-input v-model="form.phone" placeholder="请输入手机号"></el-input>
+      </el-form-item>
+      <el-form-item label="password" prop="password">
+        <el-input v-model="form.password" placeholder="请输入密码"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button @click="submit">登 录</el-button>
+      </el-form-item>
+    </el-form>
+  </div>
 </template>
 
 <script setup>
+import { reactive } from 'vue'
+import Api from '@/api'
 
+const form = reactive({
+  phone: '',
+  password: ''
+})
+const submit = () => {
+  Api.user.login(form).then(res => {
+    console.log(res)
+  })
+}
 </script>
 <style lang='scss' scoped>
 
