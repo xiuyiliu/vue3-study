@@ -5,8 +5,8 @@ export default {
   createNote (params: any) {
     return http.post(`${prefix.api}note/add`, params)
   },
-  findAllNote () {
-    return http.get(`${prefix.api}note/findAll`)
+  findAllNote (params: any) {
+    return http.get(`${prefix.api}note/findAll`, { params })
   },
   findOneNote (params: any) {
     return http.post(`${prefix.api}note/findOne`, params)

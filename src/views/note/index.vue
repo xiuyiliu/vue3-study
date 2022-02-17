@@ -1,6 +1,7 @@
 <!--  -->
 <template>
   <div>
+    <app-pagination></app-pagination>
     <el-form ref="formRef" :model="state.form" label-width="120px">
       <el-form-item label="标题" prop="title">
         <el-input v-model="state.form.title" placeholder="标题"></el-input>
@@ -9,7 +10,7 @@
         <el-input v-model="state.form.content" placeholder="内容"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button @click="submit">提 交</el-button>
+        <el-button @click="add">提 交</el-button>
       </el-form-item>
     </el-form>
     <el-table :data='state.dataList'>
@@ -34,21 +35,23 @@ const state = reactive({
   },
   dataList: []
 })
-const submit = () => {
-  Api.note.createNote(state.form).then(res => {
-    console.log(res)
-  })
+const getList = async () => {
+  const { success, data } = await Api.note.findAllNote()
+  if (success) {
+    state.dataList = data
+  }
 }
-const getList = () => {
-  Api.note.findAllNote().then(res => {
-    state.dataList = res
-  })
-}
-const remove = (id) => {
-  Api.note.removeNote({ id }).then(res => {
-    console.log(res)
+const add = async () => {
+  const { success } = await Api.note.createNote(state.form)
+  if (success) {
     getList()
-  })
+  }
+}
+const remove = async (id) => {
+  const { success } = await Api.note.removeNote({ id })
+  if (success) {
+    getList()
+  }
 }
 onMounted(() => {
   getList()
