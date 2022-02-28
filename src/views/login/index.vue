@@ -12,6 +12,12 @@
         <el-button @click="submit">登 录</el-button>
       </el-form-item>
     </el-form>
+    <app-slot>
+      <template #header="{ header }">{{header}}</template>
+      <template #default="mainSlot">{{mainSlot.main}}</template>
+      <!-- <template #footer="footerSlot">{{footerSlot.footer}}</template> -->
+      <template #footer>fff</template>
+    </app-slot>
   </div>
 </template>
 
