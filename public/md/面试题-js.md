@@ -274,4 +274,38 @@
   }
   ```
 
+- 冒泡排序
+
+  ```
+  function bubbleSort(arr) {
+    // 获取数组长度，以确定循环次数。
+    let len = arr.length
+    // 遍历数组len次，以确保数组被完全排序。
+    for(let i = 0; i < len; i++) {
+    	// 遍历数组的前len-i项，忽略后面的i项（已排序部分）。
+      for(let j = 0; j < len - 1 - i; j++) {
+        // 将每一项与后一项进行对比，不符合要求的就换位。
+        if (arr[j] > arr[j + 1]) {
+          [arr[j + 1], arr[j]] = [arr[j], arr[j + 1]]
+        }
+      }
+    }
+    return arr
+  }
+  ```
+
+
+- 手写一个Ajax
+
+  ```
+  const ajax = new XMLHttpRequest()
+  ajax.open('get', 'http://localhost:3000')
+  ajax.send()
+  ajax.onreadystagechange = function() {
+    if (ajax.readyStage === 4 && ajax.status === 200) {
+      ...
+    }
+  }
+  ```
+
   ​
