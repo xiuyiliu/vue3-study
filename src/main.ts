@@ -5,6 +5,7 @@ import store from './store'
 import ElementPlus from 'element-plus'
 import 'element-plus/theme-chalk/index.css'
 import components from './components'
+// 提交测试
 
 const app = createApp(App)
 Object.keys(components).forEach(name => {
